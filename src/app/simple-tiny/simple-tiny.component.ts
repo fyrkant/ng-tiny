@@ -7,14 +7,10 @@ import {
   Output
 } from '@angular/core';
 
-import 'tinymce/themes/modern/theme';
-import 'tinymce/plugins/link/plugin';
-// import 'tinymce/plugins/paste/plugin';
-// import 'tinymce/plugins/table/plugin';
-
 @Component({
   selector: 'simple-tiny',
-  template: `<textarea id="{{elementId}}"></textarea>`
+  templateUrl: './simple-tiny.component.html',
+  styleUrls: ['./simple-tiny.component.css']
 })
 export class SimpleTinyComponent implements AfterViewInit, OnDestroy {
   @Input() elementId: String;
@@ -25,7 +21,7 @@ export class SimpleTinyComponent implements AfterViewInit, OnDestroy {
   ngAfterViewInit() {
     tinymce.init({
       selector: '#' + this.elementId,
-      plugins: ['link'],
+      plugins: ['link', 'paste', 'table'],
       skin_url: 'assets/skins/lightgray',
       setup: editor => {
         this.editor = editor;
